@@ -5,7 +5,15 @@ public class Ontology {
 	private String name;
 	private int parent_id;
 	private int level;
-
+    
+	public void printOntology() {
+		System.out.print(this.getId());
+		System.out.print(this.getName());
+		System.out.print(this.getParent_id());
+		System.out.print(this.getLevel());
+	}
+	
+	
 	public int getId() {
 		return id;
 	}

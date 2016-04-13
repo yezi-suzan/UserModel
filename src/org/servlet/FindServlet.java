@@ -16,10 +16,13 @@ import org.model.Ontology;
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
+import net.sf.json.JSONArray;
+import net.sf.json.JSONObject;
+
 /**
  * Servlet implementation class FindServlet
  */
-@WebServlet(description = "��ѯ", urlPatterns = { "/FindServlet" })
+@WebServlet(description = " ", urlPatterns = { "/FindServlet" })
 public class FindServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
@@ -36,8 +39,12 @@ public class FindServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("servlet");
 		List<Ontology> list = new Dao().findOntology();
-		request.setAttribute("list", list);
+		JSONArray jsonArray=JSONArray.fromObject(list);
+	
+		System.out.println(jsonArray);
+		response.getWriter().print(jsonArray);
 	}
 
 	/**

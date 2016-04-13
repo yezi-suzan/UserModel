@@ -18,10 +18,11 @@ public class Dao {
 		Connection connection = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			String url = "jdbc:nysql://localhost:3306/db";
+			String url = "jdbc:mysql://localhost:3306/db";
 			String user = "root";
-			String password = "111";
+			String password = "123456";
 			connection = DriverManager.getConnection(url, user, password);
+//			System.out.println("connnected");
 		} catch (ClassNotFoundException e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -66,17 +67,18 @@ public class Dao {
 	public List<Ontology> findOntology() {
 		List<Ontology> list = new ArrayList<Ontology>();
 		Connection connection = getConnection();
-		String sql = "select * from ontology_base";
+		String sql = "select * from ontology_base limit 0,100";
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			ResultSet resultSet = preparedStatement.executeQuery();
-			
+//			System.out.println("sql");
 			while (resultSet.next()) {
 				Ontology ontology = new Ontology();
 				ontology.setId(resultSet.getInt("id"));
 				ontology.setName(resultSet.getString("name"));
 				ontology.setParent_id(resultSet.getInt("parent_id"));
 				ontology.setLevel(resultSet.getInt("level"));
+				ontology.printOntology();
 				list.add(ontology);
 			}
 			resultSet.close();
