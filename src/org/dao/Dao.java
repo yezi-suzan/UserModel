@@ -5,14 +5,14 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.vo.Ontology;
-import org.vo.Profile;
+import org.model.Ontology;
+import org.model.Profile;
 
 public class Dao {
 	/*
-	 * »ñÈ¡Êý¾Ý¿âÁ¬½Ó
+	 * ï¿½ï¿½È¡ï¿½ï¿½ï¿½Ý¿ï¿½ï¿½ï¿½ï¿½ï¿½
 	 * 
-	 * @return Connection¶ÔÏó
+	 * @return Connectionï¿½ï¿½ï¿½ï¿½
 	 */
 	public Connection getConnection() {
 		Connection connection = null;
@@ -22,7 +22,6 @@ public class Dao {
 			String user = "root";
 			String password = "111";
 			connection = DriverManager.getConnection(url, user, password);
-			Statement statement = connection.createStatement();
 		} catch (ClassNotFoundException e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -34,7 +33,7 @@ public class Dao {
 	}
 
 	/*
-	 * ¸ù¾Ýname»ñÈ¡ÐËÈ¤¶È
+	 * ï¿½ï¿½ï¿½ï¿½nameï¿½ï¿½È¡ï¿½ï¿½È¤ï¿½ï¿½
 	 */
 	public Profile findProfile(String name) {
 		Profile profile = new Profile();
@@ -62,7 +61,7 @@ public class Dao {
 	}
 	
 	/*
-	 * »ñÈ¡ontology_base
+	 * ï¿½ï¿½È¡ontology_base
 	 */
 	public List<Ontology> findOntology() {
 		List<Ontology> list = new ArrayList<Ontology>();

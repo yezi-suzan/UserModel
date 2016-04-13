@@ -1,4 +1,4 @@
-package org.vo;
+package org.model;
 
 import java.nio.DoubleBuffer;
 

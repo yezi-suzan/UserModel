@@ -1,4 +1,4 @@
-package org.vo;
+package org.model;
 
 public class Ontology {
 	private int id;

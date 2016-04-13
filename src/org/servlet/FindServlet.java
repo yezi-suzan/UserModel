@@ -11,7 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.dao.Dao;
-import org.vo.Ontology;
+import org.model.Ontology;
 
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
@@ -19,7 +19,7 @@ import com.mysql.jdbc.Statement;
 /**
  * Servlet implementation class FindServlet
  */
-@WebServlet(description = "²éÑ¯", urlPatterns = { "/FindServlet" })
+@WebServlet(description = "ï¿½ï¿½Ñ¯", urlPatterns = { "/FindServlet" })
 public class FindServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
