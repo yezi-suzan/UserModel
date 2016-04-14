@@ -1,7 +1,6 @@
 package org.servlet;
 
 import java.io.IOException;
-import java.sql.DriverManager;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,11 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.dao.Dao;
 import org.model.Ontology;
 
-import com.mysql.jdbc.Connection;
-import com.mysql.jdbc.Statement;
-
 import net.sf.json.JSONArray;
-import net.sf.json.JSONObject;
 
 /**
  * Servlet implementation class FindServlet
@@ -35,16 +30,22 @@ public class FindServlet extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("servlet");
+
 		List<Ontology> list = new Dao().findOntology();
-		JSONArray jsonArray=JSONArray.fromObject(list);
-	
-		System.out.println(jsonArray);
-		response.getWriter().print(jsonArray);
+		JSONArray jsonArray = JSONArray.fromObject(list);
+		
+		
+		response.setContentType("application/json;charset=UTF-8"); // 设置响应内容类型
+		response.setCharacterEncoding("UTF-8");
+		
+		// System.out.println(jsonArray);
+		response.getWriter().append(jsonArray.toString());
 	}
 
 	/**

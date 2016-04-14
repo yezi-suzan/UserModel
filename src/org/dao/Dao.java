@@ -1,7 +1,10 @@
 package org.dao;
 
-import java.nio.DoubleBuffer;
-import java.sql.*;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -22,7 +25,7 @@ public class Dao {
 			String user = "root";
 			String password = "123456";
 			connection = DriverManager.getConnection(url, user, password);
-//			System.out.println("connnected");
+			// System.out.println("connnected");
 		} catch (ClassNotFoundException e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -39,20 +42,28 @@ public class Dao {
 	public Profile findProfile(String name) {
 		Profile profile = new Profile();
 		Connection connection = getConnection();
-		String sql = "select * from user_profile_2 while name=?";
+		String sql = "select * from user_profile_2 where name=?";
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.setString(1, name);
 			ResultSet resultSet = preparedStatement.executeQuery();
-			profile.setId(resultSet.getInt("id"));
-			profile.setName(resultSet.getString("name"));
-			double d[]=new double[100];
-			for (int i = 1; i <= 100; i++) {
-                 d[i]=resultSet.getDouble("key"+i);
+//			System.out.println("query success");
+			while (resultSet.next()) {
+				profile.setId(resultSet.getInt("Id"));
+				profile.setName(resultSet.getString("name"));
+				double d[] = new double[102];
+				for (int i = 1; i <= 100; i++) {
+					String string="key"+i;
+//					System.out.println(string);
+					d[i] = resultSet.getDouble(string);
+//					System.out.println(d[i]);
+				}
+				profile.setKey(d);
+				profile.print();
 			}
-			profile.setKey(d);
+             
 			resultSet.close();
-			preparedStatement.cancel();
+			preparedStatement.close();
 			connection.close();
 		} catch (SQLException e) {
 			// TODO: handle exception
@@ -60,7 +71,7 @@ public class Dao {
 		}
 		return profile;
 	}
-	
+
 	/*
 	 * ��ȡontology_base
 	 */
@@ -71,14 +82,14 @@ public class Dao {
 		try {
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			ResultSet resultSet = preparedStatement.executeQuery();
-//			System.out.println("sql");
+			// System.out.println("sql");
 			while (resultSet.next()) {
 				Ontology ontology = new Ontology();
 				ontology.setId(resultSet.getInt("id"));
 				ontology.setName(resultSet.getString("name"));
 				ontology.setParent_id(resultSet.getInt("parent_id"));
-				ontology.setLevel(resultSet.getInt("level"));
-				ontology.printOntology();
+				// ontology.setLevel(resultSet.getInt("level"));
+				// ontology.printOntology();
 				list.add(ontology);
 			}
 			resultSet.close();

@@ -4,13 +4,13 @@ public class Ontology {
 	private int id;
 	private String name;
 	private int parent_id;
-	private int level;
+//	private int level;
     
 	public void printOntology() {
 		System.out.print(this.getId());
 		System.out.print(this.getName());
 		System.out.print(this.getParent_id());
-		System.out.print(this.getLevel());
+//		System.out.print(this.getLevel());
 	}
 	
 	
@@ -38,12 +38,12 @@ public class Ontology {
 		this.parent_id = parent_id;
 	}
 
-	public int getLevel() {
-		return level;
-	}
-
-	public void setLevel(int level) {
-		this.level = level;
-	}
+//	public int getLevel() {
+//		return level;
+//	}
+//
+//	public void setLevel(int level) {
+//		this.level = level;
+//	}
 
 }

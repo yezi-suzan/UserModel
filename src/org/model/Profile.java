@@ -1,11 +1,17 @@
 package org.model;
 
-import java.nio.DoubleBuffer;
-
 public class Profile {
 	private int id;
 	private String name;
-	private double  key[]= new double[100] ;
+	private double  key[]= new double[102] ;
+	
+	public void print() {
+		System.out.println(getId());
+		System.out.println(getName());
+		System.out.println(getKey());
+		
+	}
+	
 	public int getId() {
 		return id;
 	}

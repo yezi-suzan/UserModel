@@ -1,96 +1,66 @@
 
-//	var setting = {
-//		async: {
-//			autoParam: [],
-//			contentType: "application...",
-//			dataFilter: null,
-//			dataType: "text",
-//			enable: false,
-//			otherParam: [],
-//			type: "post",
-//			url: ""
-//		},
-//		callback: {
-//			beforeAsync: null,
-//			beforeCheck: null,
-//			beforeClick: null,
-//			beforeCollapse: null,
-//			beforeDblClick: null,
-//			beforeDrag: null,
-//			beforeDragOpen: null,
-//			beforeDrop: null,
-//			beforeEditName: null,
-//			beforeExpand: null,
-//			beforeMouseDown: null,
-//			beforeMouseUp: null,
-//			beforeRemove: null,
-//			beforeRename: null,
-//			beforeRightClick: null,
-//			onAsyncError: null,
-//			onAsyncSuccess: null,
-//			onCheck: null,
-//			onClick: null,
-//			onCollapse: null,
-//			onDblClick: null,
-//			onDrag: null,
-//			onDragMove: null,
-//			onDrop: null,
-//			onExpand: null,
-//			onMouseDown: null,
-//			onMouseUp: null,
-//			onNodeCreated: null,
-//			onRemove: null,
-//			onRename: null,
-//			onRightClick: null
-//		},
-//		data: {
-//			keep: {
-//				leaf: false,
-//				parent: false
-//			},
-//			key: {
-//				checked: "checked",
-//				children: "children",
-//				name: "name",
-//				title: "",
-//				url: "url"
-//			},
-//			simpleData: {
-//				enable: true,
-//				idKey: "id",
-//				pIdKey: "parent_id",
-//				rootPId: 0
-//			}
-//		},
-//		view: {
-//			addDiyDom: null,
-//			addHoverDom: null,
-//			autoCancelSelected: true,
-//			dblClickExpand: true,
-//			expandSpeed: "fast",
-//			fontCss: {},
-//			nameIsHTML: false,
-//			removeHoverDom: null,
-//			selectedMulti: true,
-//			showIcon: true,
-//			showLine: true,
-//			showTitle: true,
-//			txtSelectedEnable: false
-//		}
-//	};
+	var setting = {
+		data: {
+			keep: {
+				leaf: false,
+				parent: false
+			},
+			key: {
+				checked: "checked",
+				children: "children",
+				name: "name",
+				title: "",
+				url: "url"
+			},
+			simpleData: {
+				enable: true,
+				idKey: "id",
+				pIdKey: "parent_id",
+				rootPId: -1
+			}
+		},
+		view: {
+			addDiyDom: null,
+			addHoverDom: null,
+			autoCancelSelected: true,
+			dblClickExpand: true,
+			expandSpeed: "fast",
+			fontCss: {},
+			nameIsHTML: false,
+			removeHoverDom: null,
+			selectedMulti: true,
+			showIcon: true,
+			showLine: true,
+			showTitle: true,
+			txtSelectedEnable: false
+		}
+	};
 
-	$(document).ready(function() {
-		var zNodes;
-		console.log(1);
+	$(document).ready(function() {	
 		$.ajax({
-			type: "get",
+			type: "POST",
 			url: "FindServlet",
 			datatype:"json",
 			complete: function(data) {
-				console.log(data);
-//				zNodes = data;
-//				$.fn.zTree.init($("#ztree"), setting, zNodes);
+//				console.log(data.responseText);
+				var zNodes =JSON.parse( data.responseText);
+//				console.log(zNodes);
+				$.fn.zTree.init($("#ztree"), setting, zNodes);
 			},
-//			async: true
+			async: true
 		});
+		
+			document.getElementById("chaxun").onclick=function  () {
+			var name=$("input").value
+			$.ajax({
+				type:"post",
+				url:"ProfileFind",
+				data: {"name":$("input").value},
+				complete:function(data){
+					console.log(data)
+				},
+				async:true
+			});
+				
+			}
 	})

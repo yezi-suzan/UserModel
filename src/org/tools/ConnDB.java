@@ -2,8 +2,6 @@ package org.tools;
 
 import java.sql.ResultSet;
 
-import org.omg.CORBA.PUBLIC_MEMBER;
-
 import com.mysql.jdbc.Connection;
 import com.mysql.jdbc.Statement;
 
